@@ -1,3 +1,4 @@
+using Grasshopper;
 using Grasshopper.Kernel;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Toolkit
 {
     public class DataDictionary : GH_Component
     {
-        public DataDictionary() : base("Custom Series", "CusSeries", "Generate a list of numbers between 2 extremes based on increment value", "Hayball", "Math")
+        public DataDictionary() : base("DataDictionary", "DataDict", "Store items as persistent data as key value pairs", "Hayball", "Math")
         {
         }
 
@@ -16,8 +17,8 @@ namespace Toolkit
         {
             pManager.AddBooleanParameter("Toggle", "T", "Minium Value", GH_ParamAccess.item, false);
             pManager.AddBooleanParameter("Reset", "R", "Maximum Value", GH_ParamAccess.item, false);
-            pManager.AddGenericParameter("Key", "k", "Key to set or retrieve", GH_ParamAccess.item);
-            pManager.AddNumberParameter("Value", "v", "Values to set to key", GH_ParamAccess.tree);
+            pManager.AddIntegerParameter("Index", "i", "Key to set or retrieve as an integer", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Value", "v", "Values to set to key", GH_ParamAccess.item);
         }
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -27,40 +28,39 @@ namespace Toolkit
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            boolean toggle = false;
-            boolean reset = false;
-            var key = null;
-            DataTree<object> values = new DataTree<object>();
+            bool toggle = false;
+            bool reset = false;
+            int k = 0;
+            object values = new object();
 
 
             if (!DA.GetData(0, ref toggle)) { return; }
             if (!DA.GetData(1, ref reset)) { return; }
-            if (!DA.GetData(2, ref key)) { return; }
-            if (!DA.GetData(2, ref values)) { return; }
+            if (!DA.GetData(2, ref k)) { return; }
+            if (!DA.GetData(3, ref values)) { return; }
 
-            if (toggle && key!= null)
+            if (toggle)
             {
-            if(PersistentData.ContainsKey(key))
-                PersistentData[key] = data;
+            if(PersistentData.ContainsKey(k))
+                PersistentData[k] = values;
 
             else
-                PersistentData.Add(key, data);
+                PersistentData.Add(k, values);
             }
 
             if (reset)
             {
             PersistentData.Clear();
-            PersistentData.Add(0, null);
+            //PersistentData.Add(0, null);
             }
 
-            if(PersistentData.ContainsKey(key))
+            if(PersistentData.ContainsKey(k))
+                DA.SetData(0, PersistentData[k]);
 
-             //   AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "The increment value is too high");
-  
-            //List<double> combinations = Compute(min, max, incr);
-            DA.SetData(0, PersistentData[key]);
+            else
+                AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "Given key not found");
         }
-
+        
           Dictionary<int, object> PersistentData = new Dictionary<int, object>();
 
 

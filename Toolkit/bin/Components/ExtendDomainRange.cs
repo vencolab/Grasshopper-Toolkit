@@ -17,7 +17,7 @@ using System;
 // folder in Grasshopper.
 // You can use the _GrasshopperDeveloperSettings Rhino command for that.
 
-namespace Hayball
+namespace Toolkit
 {
     public class ExtendDomainRange : GH_Component
     {
