@@ -27,7 +27,7 @@ namespace Toolkit
         /// Subcategory the panel. If you use non-existing tab or panel names,
         /// new tabs/panels will automatically be created.
         /// </summary>
-        public ExtendDomainRange() : base("Extend Domain Range", "ExDom", "Extend Domain Range by Value", "Hayball", "Math")
+        public ExtendDomainRange() : base("Extend Domain Range", "ExDom", "Extend Domain Range by Value", "Toolkit", "Math")
         {
         }
 

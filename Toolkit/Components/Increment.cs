@@ -8,7 +8,7 @@ namespace Toolkit
 {
     public class Increment : GH_Component
     {
-        public Increment() : base("Custom Series", "CusSeries", "Generate a list of numbers between 2 extremes based on increment value", "Hayball", "Math")
+        public Increment() : base("Custom Series", "CSeries", "Generate a list of numbers between 2 extremes based on increment value", "Toolkit", "Math")
         {
         }
 

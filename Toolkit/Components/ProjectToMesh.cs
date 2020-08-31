@@ -26,7 +26,7 @@ namespace Toolkit
 {
     public class Shadow : GH_Component
     {
-        public Shadow() : base("ShadowOutline", "SO", "Project mesh outlines on another mesh in a given direction", "Hayball", "Mesh")
+        public Shadow() : base("ShadowOutline", "SO", "Project mesh outlines on another mesh in a given direction", "Toolkit", "Mesh")
         {
         }
 
@@ -69,10 +69,11 @@ namespace Toolkit
             List<Curve> pc = new List<Curve>();
 
             Polyline[] plArr = msh.GetOutlines(pln);
-            
+
             List<PolylineCurve> _ppcs = new List<PolylineCurve>();
             Parallel.For(0, plArr.Length,
-            i => {
+            i =>
+            {
                 _ppcs.Add(plArr[i].ToPolylineCurve());
             });
             Curve[] _ppc = Curve.JoinCurves(_ppcs);
@@ -83,14 +84,16 @@ namespace Toolkit
 
             // for each mesh in projection Mesh , Get The outline as polyline. convert to curve and join 
 
-            
+
 
             Parallel.ForEach(pMesh,
-                pM => {
+                pM =>
+                {
                     Polyline[] _pPl = pM.GetOutlines(pln);
                     List<PolylineCurve> _pcs = new List<PolylineCurve>();
                     Parallel.For(0, _pPl.Length,
-                    i => {
+                    i =>
+                    {
                         _pcs.Add(_pPl[i].ToPolylineCurve());
                     });
                     Curve[] _pc = Curve.JoinCurves(_pcs);
@@ -98,7 +101,7 @@ namespace Toolkit
                     {
                         pc.Add(c);
                     }
-              });
+                });
 
             Parallel.For(0, plArr.Length,
                i =>
@@ -118,7 +121,7 @@ namespace Toolkit
                                {
                                    CurveIntersections inter = Intersection.CurveCurve(c, curve, tol, tol);
                                }
- 
+
                            }
                        });
                });

@@ -10,7 +10,7 @@ namespace Toolkit
     public class TaskCapableVariableDivide : GH_TaskCapableComponent<VariableDivide>, IGH_VariableParameterComponent
     {
         // initialise new instance  of variableDivide Class
-        public TaskCapableVariableDivide() : base("Divide Variable Distance", "VarDist", "Divide curves using a list of distances between points", "Hayball", "Curve")
+        public TaskCapableVariableDivide() : base("Divide Variable Distance", "VarDist", "Divide curves using a list of distances between points", "Toolkit", "Curve")
         {
         }
 
@@ -68,7 +68,7 @@ namespace Toolkit
                 List<double> divisions = new List<double>();
                 int rep = 0;
                 Dictionary<int, List<double>> dictDivisions = new Dictionary<int, List<double>>();
-                               
+
                 if (!DA.GetData(0, ref crv)) { return; }
                 if (!DA.GetDataList(1, divisions)) { return; }
                 if (!DA.GetData(2, ref rep)) { return; }
@@ -78,7 +78,7 @@ namespace Toolkit
                     if (!DA.GetDataList(i, _divisions)) { return; }
                     dictDivisions.Add(i, _divisions);
                 }
-                
+
 
                 // 2. Compute
                 results = VariableDivide.Divide(crv, divisions, rep, dictDivisions);

@@ -30,7 +30,7 @@ namespace Toolkit
         /// Subcategory the panel. If you use non-existing tab or panel names,
         /// new tabs/panels will automatically be created.
         /// </summary>
-        public CreateTree() : base("Extend Domain Range", "ExDom", "Extend Domain Range by Value", "Hayball", "Math")
+        public CreateTree() : base("CreateTree", "CT", "Create Tree", "Toolkit", "Data")
         {
         }
 
@@ -75,7 +75,7 @@ namespace Toolkit
             if (!DA.GetData(0, ref obj)) { return; }
             if (!DA.GetData(1, ref path)) { return; }
 
-   
+
 
             DataTree<object> dt = new DataTree<object>();
 

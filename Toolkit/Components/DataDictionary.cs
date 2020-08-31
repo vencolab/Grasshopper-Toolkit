@@ -9,7 +9,7 @@ namespace Toolkit
 {
     public class DataDictionary : GH_Component
     {
-        public DataDictionary() : base("DataDictionary", "DataDict", "Store items as persistent data as key value pairs", "Hayball", "Math")
+        public DataDictionary() : base("DataDictionary", "DataDict", "Store items as persistent data as key value pairs", "Toolkit", "Math")
         {
         }
 
@@ -41,27 +41,27 @@ namespace Toolkit
 
             if (toggle)
             {
-            if(PersistentData.ContainsKey(k))
-                PersistentData[k] = values;
+                if (PersistentData.ContainsKey(k))
+                    PersistentData[k] = values;
 
-            else
-                PersistentData.Add(k, values);
+                else
+                    PersistentData.Add(k, values);
             }
 
             if (reset)
             {
-            PersistentData.Clear();
-            //PersistentData.Add(0, null);
+                PersistentData.Clear();
+                //PersistentData.Add(0, null);
             }
 
-            if(PersistentData.ContainsKey(k))
+            if (PersistentData.ContainsKey(k))
                 DA.SetData(0, PersistentData[k]);
 
             else
                 AddRuntimeMessage(GH_RuntimeMessageLevel.Warning, "Given key not found");
         }
-        
-          Dictionary<int, object> PersistentData = new Dictionary<int, object>();
+
+        Dictionary<int, object> PersistentData = new Dictionary<int, object>();
 
 
         public override GH_Exposure Exposure => GH_Exposure.primary;
