@@ -1,19 +1,12 @@
-﻿using Grasshopper.Kernel;
-using Grasshopper;
+﻿using Grasshopper;
+using Grasshopper.Kernel;
 using Grasshopper.Kernel.Data;
-using Rhino.Geometry;
 using System;
-using System.Collections.Generic;
-
 
 // This file is for use as a reference
 
 //TO-DO:
 //- Icon
-
-
-
-
 
 // In order to load the result of this wizard, you will also need to
 // add the output bin/ folder of this project to the list of loaded
@@ -74,8 +67,6 @@ namespace Toolkit
             // When data cannot be extracted from a parameter, we should abort this method.
             if (!DA.GetData(0, ref obj)) { return; }
             if (!DA.GetData(1, ref path)) { return; }
-
-
 
             DataTree<object> dt = new DataTree<object>();
 

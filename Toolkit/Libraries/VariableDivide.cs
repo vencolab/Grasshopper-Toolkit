@@ -9,7 +9,7 @@ namespace Toolkit
     {
         public List<Curve> Curves { get; set; }
         public List<Point3d> Points { get; set; }
-        
+
         public List<Vector3d> Tangents { get; set; }
         public List<double> Parameters { get; set; }
 
@@ -17,7 +17,7 @@ namespace Toolkit
         public bool WarningMessageEndPts { get; set; }
 
         //public VariableDivide() { }
-        public static VariableDivide Divide(Curve crvs, List<double> distances, int rep, Dictionary<int,List<double>> dictDistances)
+        public static VariableDivide Divide(Curve crvs, List<double> distances, int rep, Dictionary<int, List<double>> dictDistances)
         {
             VariableDivide vd = new VariableDivide();
 
@@ -37,7 +37,7 @@ namespace Toolkit
 
             List<Curve> crvList = new List<Curve>();
             List<Point3d> ptList = new List<Point3d>() { crvs.PointAtStart };
-            List<Vector3d> vecList = new List<Vector3d>() { crvs.TangentAtStart};
+            List<Vector3d> vecList = new List<Vector3d>() { crvs.TangentAtStart };
             List<double> paramList = new List<double>() { 0.0 };
             bool tolBool = false;
             bool endPtsBool = false;
@@ -63,9 +63,11 @@ namespace Toolkit
                         case 0:
                             i = -1;
                             break;
+
                         case 1:
                             i = distances.Count - 1;
                             break;
+
                         case 2:
                             goto Finish;
                     }
@@ -92,15 +94,13 @@ namespace Toolkit
                         ptList.Add(events.Last().PointA);
                         vecList.Add(crvs.TangentAt(events.Last().ParameterA));
                         paramList.Add(events.Last().ParameterA);
-
                     }
-
                     else { break; }
                 }
                 else { break; }
             }
 
-            Finish:
+        Finish:
             crvList.Add(crvs);
             ptList.Add(crvs.PointAtEnd);
             vecList.Add(crvs.TangentAtEnd);
@@ -112,7 +112,7 @@ namespace Toolkit
             vd.Parameters = paramList;
             vd.WarningMessageTol = tolBool;
             vd.WarningMessageEndPts = endPtsBool;
-            
+
             return vd;
         }
     }

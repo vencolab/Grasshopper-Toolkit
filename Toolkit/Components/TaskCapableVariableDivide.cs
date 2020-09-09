@@ -79,7 +79,6 @@ namespace Toolkit
                     dictDivisions.Add(i, _divisions);
                 }
 
-
                 // 2. Compute
                 results = VariableDivide.Divide(crv, divisions, rep, dictDivisions);
             }

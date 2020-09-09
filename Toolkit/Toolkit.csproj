@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Toolkit</RootNamespace>
     <AssemblyName>Toolkit</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
@@ -36,26 +36,55 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Eto, Version=2.5.0.0, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.17.19235.15041\lib\net45\Eto.dll</HintPath>
+      <HintPath>..\packages\RhinoCommon.6.29.20238.11501\lib\net45\Eto.dll</HintPath>
     </Reference>
-    <Reference Include="GH_IO, Version=6.17.19235.15040, Culture=neutral, PublicKeyToken=6a29997d2e6b4f97, processorArchitecture=MSIL">
-      <HintPath>..\packages\Grasshopper.6.17.19235.15041\lib\net45\GH_IO.dll</HintPath>
+    <Reference Include="GH_IO, Version=6.29.20238.11500, Culture=neutral, PublicKeyToken=6a29997d2e6b4f97, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grasshopper.6.29.20238.11501\lib\net45\GH_IO.dll</HintPath>
     </Reference>
-    <Reference Include="Grasshopper, Version=6.17.19235.15040, Culture=neutral, PublicKeyToken=dda4f5ec2cd80803, processorArchitecture=MSIL">
-      <HintPath>..\packages\Grasshopper.6.17.19235.15041\lib\net45\Grasshopper.dll</HintPath>
+    <Reference Include="Grasshopper, Version=6.29.20238.11500, Culture=neutral, PublicKeyToken=dda4f5ec2cd80803, processorArchitecture=MSIL">
+      <HintPath>..\packages\Grasshopper.6.29.20238.11501\lib\net45\Grasshopper.dll</HintPath>
     </Reference>
     <Reference Include="KDTree">
       <HintPath>U:\Grasshopper\02_Components\Libraries Optional\nursery065\KDTree.dll</HintPath>
     </Reference>
-    <Reference Include="Rhino.UI, Version=6.17.19235.15040, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.17.19235.15041\lib\net45\Rhino.UI.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
-    <Reference Include="RhinoCommon, Version=6.17.19235.15040, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
-      <HintPath>..\packages\RhinoCommon.6.17.19235.15041\lib\net45\RhinoCommon.dll</HintPath>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rhino.UI, Version=6.29.20238.11500, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.6.29.20238.11501\lib\net45\Rhino.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="RhinoCommon, Version=6.29.20238.11500, Culture=neutral, PublicKeyToken=552281e97c755530, processorArchitecture=MSIL">
+      <HintPath>..\packages\RhinoCommon.6.29.20238.11501\lib\net45\RhinoCommon.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.7.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.4.7.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -66,15 +95,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\CreateTree.cs" />
-    <Compile Include="Components\DataDictionary.cs" />
     <Compile Include="Components\ExtendDomainRange.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Components\ProjectToMesh.cs" />
+    <Compile Include="Components\PersistentData.cs" />
+    <Compile Include="Components\Shadow.cs" />
     <Compile Include="Components\Increment.cs" />
     <Compile Include="Components\TaskCapableVariableDivide.cs" />
     <Compile Include="Libraries\VariableDivide.cs" />
-    <Compile Include="Properties\HayballInfo.cs" />
+    <Compile Include="Properties\ToolkitInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -89,7 +118,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -98,6 +126,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,7 +142,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>Copy "$(TargetPath)" "$(AppData)\Grasshopper\Libraries\$(ProjectName).gha"
+    <PostBuildEvent>Copy "$(TargetPath)" "$(AppData)\Grasshopper\Libraries\Toolkit\$(ProjectName).gha"
 Erase "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
@@ -125,17 +154,16 @@ Erase "$(TargetPath)"</PostBuildEvent>
     </StartArguments>
     <StartAction>Program</StartAction>
   </PropertyGroup>
-  <Import Project="..\packages\RhinoCommon.6.17.19235.15041\build\net45\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.6.17.19235.15041\build\net45\RhinoCommon.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>Erase "$(TargetPath)"</PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\packages\RhinoCommon.6.29.20238.11501\build\net45\RhinoCommon.targets" Condition="Exists('..\packages\RhinoCommon.6.29.20238.11501\build\net45\RhinoCommon.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\RhinoCommon.6.17.19235.15041\build\net45\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.6.17.19235.15041\build\net45\RhinoCommon.targets'))" />
-    <Error Condition="!Exists('..\packages\Grasshopper.6.17.19235.15041\build\net45\Grasshopper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grasshopper.6.17.19235.15041\build\net45\Grasshopper.targets'))" />
+    <Error Condition="!Exists('..\packages\RhinoCommon.6.29.20238.11501\build\net45\RhinoCommon.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\RhinoCommon.6.29.20238.11501\build\net45\RhinoCommon.targets'))" />
+    <Error Condition="!Exists('..\packages\Grasshopper.6.29.20238.11501\build\net45\Grasshopper.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Grasshopper.6.29.20238.11501\build\net45\Grasshopper.targets'))" />
   </Target>
-  <Import Project="..\packages\Grasshopper.6.17.19235.15041\build\net45\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.6.17.19235.15041\build\net45\Grasshopper.targets')" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-  </PropertyGroup>
+  <Import Project="..\packages\Grasshopper.6.29.20238.11501\build\net45\Grasshopper.targets" Condition="Exists('..\packages\Grasshopper.6.29.20238.11501\build\net45\Grasshopper.targets')" />
 </Project>
