@@ -17,16 +17,18 @@ namespace Toolkit
         public bool WarningMessageEndPts { get; set; }
 
         //public VariableDivide() { }
-        public static VariableDivide Divide(Curve crvs, List<double> distances, int rep, Dictionary<int, List<double>> dictDistances)
+        public static VariableDivide Divide(Curve crvs, List<double> distances, int rep)
         {
             VariableDivide vd = new VariableDivide();
 
             if (distances.Count == 0)
-            {
                 return null;
-            }
 
-            Dictionary<int, List<double>>.ValueCollection values = dictDistances.Values;
+            if (rep > 2 | rep < 0)
+            {
+                rep = 0;
+            }
+            //Dictionary<int, List<double>>.ValueCollection values = dictDistances.Values;
 
             crvs.Domain = new Interval(0, crvs.GetLength());
             double t1 = crvs.Domain.T1;
@@ -55,6 +57,7 @@ namespace Toolkit
 
             while (true)
             {
+
                 //reset i if distance list end reached but curve is still long.
                 if (i >= distances.Count - 1)
                 {
@@ -65,14 +68,13 @@ namespace Toolkit
                             break;
 
                         case 1:
-                            i = distances.Count - 1;
+                            i = distances.Count - 2;
                             break;
 
                         case 2:
                             goto Finish;
                     }
                 }
-
                 // increment
                 i++;
                 j++;

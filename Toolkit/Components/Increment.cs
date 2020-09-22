@@ -42,7 +42,7 @@ namespace Toolkit
 
             List<double> combinations = Compute(min, max, incr);
 
-            DA.SetData(0, combinations);
+            DA.SetDataList(0, combinations);
         }
 
         public List<double> Compute(double min, double max, double incr)

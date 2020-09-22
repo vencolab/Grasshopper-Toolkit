@@ -50,7 +50,7 @@ namespace Toolkit
 
             if (!DA.GetData(0, ref mesh)) { return; }
             if (!DA.GetData(1, ref vec)) { return; }
-            if (!DA.GetData(2, ref pMesh)) { return; }
+            if (!DA.GetDataList(2, pMesh)) { return; }
 
             List<Curve> shadows = Compute(mesh, vec, pMesh);
 
@@ -76,9 +76,9 @@ namespace Toolkit
                 _ppcs.Add(plArr[i].ToPolylineCurve());
             });
             Curve[] _ppc = Curve.JoinCurves(_ppcs);
-            foreach (PolyCurve c in _ppc)
+            foreach (var c in _ppc)
             {
-                ppc.Add(c);
+                ppc.Add(c as PolyCurve);
             }
 
             // for each mesh in projection Mesh , Get The outline as polyline. convert to curve and join

@@ -19,10 +19,11 @@ namespace Toolkit
         {
             pManager.AddCurveParameter("Crve", "C", "Curves to Divide", GH_ParamAccess.item);
             pManager.AddNumberParameter("Distance", "D", "List of Distances", GH_ParamAccess.list);
-            pManager.AddIntegerParameter("Pattern", "P", "Pattern index if using optional distances. ", GH_ParamAccess.list);
             pManager.AddIntegerParameter("Repeat Type", "R", "0 = Wrap, 1 = Repeat Last, 2 = No Repeat. Default is 0", GH_ParamAccess.item, 0);
+            //pManager.AddIntegerParameter("Pattern", "P", "Pattern index if using optional distances. ", GH_ParamAccess.list);
             pManager.HideParameter(0);
         }
+        
 
         //register all output parameters
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -43,20 +44,20 @@ namespace Toolkit
                 Curve crv = null;
                 List<double> distances = new List<double>();
                 int rep = 0;
-                Dictionary<int, List<double>> dictDivisions = new Dictionary<int, List<double>>();
+                //Dictionary<int, List<double>> dictDivisions = new Dictionary<int, List<double>>();
 
                 Task<VariableDivide> tsk = null;
 
-                for (int i = 3; i < Params.Input.Count; i++)
-                {
-                    List<double> _divisions = new List<double>();
-                    if (!DA.GetDataList(i, _divisions)) { return; }
-                    dictDivisions.Add(i, _divisions);
-                }
+                //for (int i = 3; i < Params.Input.Count; i++)
+                //{
+                //    List<double> _divisions = new List<double>();
+                //    if (!DA.GetDataList(i, _divisions)) { return; }
+                //    dictDivisions.Add(i, _divisions);
+                //}
 
                 if (DA.GetData(0, ref crv) && DA.GetDataList(1, distances) && DA.GetData(2, ref rep))
                 {
-                    tsk = Task.Run(() => VariableDivide.Divide(crv, distances, rep, dictDivisions), CancelToken);
+                    tsk = Task.Run(() => VariableDivide.Divide(crv, distances, rep), CancelToken);
                 }
                 TaskList.Add(tsk);
                 return;
@@ -67,20 +68,20 @@ namespace Toolkit
                 Curve crv = null;
                 List<double> divisions = new List<double>();
                 int rep = 0;
-                Dictionary<int, List<double>> dictDivisions = new Dictionary<int, List<double>>();
+                //Dictionary<int, List<double>> dictDivisions = new Dictionary<int, List<double>>();
 
                 if (!DA.GetData(0, ref crv)) { return; }
                 if (!DA.GetDataList(1, divisions)) { return; }
                 if (!DA.GetData(2, ref rep)) { return; }
-                for (int i = 3; i < Params.Input.Count; i++)
-                {
-                    List<double> _divisions = new List<double>();
-                    if (!DA.GetDataList(i, _divisions)) { return; }
-                    dictDivisions.Add(i, _divisions);
-                }
+                //for (int i = 3; i < Params.Input.Count; i++)
+                //{
+                //    List<double> _divisions = new List<double>();
+                //    if (!DA.GetDataList(i, _divisions)) { return; }
+                //    dictDivisions.Add(i, _divisions);
+                //}
 
                 // 2. Compute
-                results = VariableDivide.Divide(crv, divisions, rep, dictDivisions);
+                results = VariableDivide.Divide(crv, divisions, rep);
             }
             // 3. Set
             if (results != null)

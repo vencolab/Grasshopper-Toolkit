@@ -15,14 +15,14 @@ namespace Toolkit
     public sealed class PersistentData : GH_Component
     {
         public PersistentData()
-        : base("Persistent Data", "PData", "Retain the last known data for as long as possible", "Toolkit", "Data")
+        : base("Persistent Data", "PData", "Retain the last known data for as long as possible, preserving the data structure", "Toolkit", "Data")
         { }
 
         protected override void RegisterInputParams(GH_InputParamManager pManager)
         {
             pManager.AddBooleanParameter("Toggle", "T", "Toggle to register key-value pair", GH_ParamAccess.item, false);
             pManager.AddTextParameter("Key", "K", "key to save", GH_ParamAccess.item);
-            pManager.AddGenericParameter("Values", "V", "values to retain", GH_ParamAccess.tree);
+            pManager.AddGenericParameter("Values", "V", "values to retain in corresponding key", GH_ParamAccess.tree);
             pManager.AddBooleanParameter("Clear", "C", "Clear All values held in this component", GH_ParamAccess.item, false);
             pManager[2].Optional = true;
             pManager[3].Optional = true;
@@ -30,7 +30,7 @@ namespace Toolkit
 
         protected override void RegisterOutputParams(GH_OutputParamManager pManager)
         {
-            pManager.AddGenericParameter("Data", "D", "Retained or passed data", GH_ParamAccess.tree);
+            pManager.AddGenericParameter("Data", "D", "Retained or passed data at the given Key", GH_ParamAccess.tree);
             pManager.AddTextParameter("Keys", "K", "Keys stored as a list", GH_ParamAccess.list);
             pManager.AddGenericParameter("Values", "V", "Values stored as a list", GH_ParamAccess.tree);
         }
@@ -46,17 +46,18 @@ namespace Toolkit
             bool clear = false;
             GH_Structure<IGH_Goo> data2 = new GH_Structure<IGH_Goo>();
 
-            Param_GenericObject input = Params.Input[2] as Param_GenericObject;
 
             access.GetData(0, ref toggle);
             access.GetData(1, ref key);
             access.GetData(3, ref clear);
 
-            if (input is null)
+            if (!(Params.Input[2] is Param_GenericObject input))
                 throw new InvalidCastException("Input was supposed to be a Param_GenericObject.");
 
             if (clear)
                 storage.Clear();
+
+     
 
             if (input.SourceCount > 0 || !input.PersistentData.IsEmpty)
             {
@@ -64,9 +65,9 @@ namespace Toolkit
                 if (toggle)
                 {
                     if (storage.ContainsKey(key))
-                        storage[key] = data.ShallowDuplicate();
+                        storage[key] = data.Duplicate();
                     else
-                        storage.Add(key, data.ShallowDuplicate());
+                        storage.Add(key, data.Duplicate());
                 }
                 for (var i = 0; i < storage.Values.Count; i++)
                 {
@@ -86,9 +87,9 @@ namespace Toolkit
             access.SetDataTree(2, data2);
         }
 
-        private Dictionary<string, GH_Structure<IGH_Goo>> storage = new Dictionary<string, GH_Structure<IGH_Goo>>();
+        private readonly Dictionary<string, GH_Structure<IGH_Goo>> storage = new Dictionary<string, GH_Structure<IGH_Goo>>();
 
-        public override Guid ComponentGuid => new Guid("{20269257-D06D-4C0B-92FB-4704329A1112}");
+        public override Guid ComponentGuid => new Guid("20269257-D06D-4C0B-92FB-4704329A1112");
 
         protected override System.Drawing.Bitmap Icon => null;
 
