@@ -17,11 +17,11 @@ namespace Toolkit
         public bool WarningMessageEndPts { get; set; }
 
         //public VariableDivide() { }
-        public static VariableDivide Divide(Curve crvs, List<double> distances, int rep)
+        public static VariableDivide Divide(Curve crv, List<double> distanceList, int rep)
         {
             VariableDivide vd = new VariableDivide();
 
-            if (distances.Count == 0)
+            if (distanceList.Count == 0)
                 return null;
 
             if (rep > 2 | rep < 0)
@@ -30,28 +30,28 @@ namespace Toolkit
             }
             //Dictionary<int, List<double>>.ValueCollection values = dictDistances.Values;
 
-            crvs.Domain = new Interval(0, crvs.GetLength());
-            double t1 = crvs.Domain.T1;
+            crv.Domain = new Interval(0, crv.GetLength());
+            double t1 = crv.Domain.T1;
             double tol = Rhino.RhinoDoc.ActiveDoc.ModelAbsoluteTolerance;
 
             int i, j;
             i = j = -1;
 
             List<Curve> crvList = new List<Curve>();
-            List<Point3d> ptList = new List<Point3d>() { crvs.PointAtStart };
-            List<Vector3d> vecList = new List<Vector3d>() { crvs.TangentAtStart };
+            List<Point3d> ptList = new List<Point3d>() { crv.PointAtStart };
+            List<Vector3d> vecList = new List<Vector3d>() { crv.TangentAtStart };
             List<double> paramList = new List<double>() { 0.0 };
             bool tolBool = false;
             bool endPtsBool = false;
 
             //warning message
-            if (crvs.PointAtStart.DistanceTo(crvs.PointAtEnd) < distances.Max())
+            if (crv.PointAtStart.DistanceTo(crv.PointAtEnd) < distanceList.Max())
             {
                 endPtsBool = true;
             }
 
-            List<Curve> crv = new List<Curve>();
-            crv.Sort((x, y) => x.PointAtStart.Z.CompareTo(y.PointAtStart.Z));
+            List<Curve> curves = new List<Curve>();
+            curves.Sort((x, y) => x.PointAtStart.Z.CompareTo(y.PointAtStart.Z)); // Sort curve based on Height
 
             //recursion
 
@@ -59,7 +59,7 @@ namespace Toolkit
             {
 
                 //reset i if distance list end reached but curve is still long.
-                if (i >= distances.Count - 1)
+                if (i >= distanceList.Count - 1)
                 {
                     switch (rep)
                     {
@@ -68,7 +68,7 @@ namespace Toolkit
                             break;
 
                         case 1:
-                            i = distances.Count - 2;
+                            i = distanceList.Count - 2;
                             break;
 
                         case 2:
@@ -79,22 +79,29 @@ namespace Toolkit
                 i++;
                 j++;
 
-                if (distances[i] < tol)
+                //intersection properties for
+                double currentParam = paramList[j];
+                double currentDistance = distanceList[i];
+                NurbsSurface nurbsSrf = new Sphere(crv.PointAt(currentParam), currentDistance).ToNurbsSurface();
+
+                if (currentDistance < tol)  // if current distance is smaller than document tolerance, remove distance from computation
                 {
                     tolBool = true;
-                    distances.RemoveAt(i);
+                    distanceList.RemoveAt(i);
                 }
+
+                currentDistance = crv.Split(currentParam)[0].GetLength() + (distanceList[i] * 1.1);
 
                 // sphere-curve intersection
                 // using  overload with curve domain to limit intersection area- allows to break while-loop when curve reaches the end.
-                CurveIntersections events = Intersection.CurveSurface(crvs, new Interval(paramList[j], t1), new Sphere(crvs.PointAt(paramList[j]), distances[i]).ToNurbsSurface(), tol, tol);
+                CurveIntersections events = Intersection.CurveSurface(crv, new Interval(currentParam, currentDistance), nurbsSrf, tol, tol);
 
                 if (events != null && events.Count > 0)
                 {
                     if (events.Last().ParameterA > paramList.Last())
                     {
                         ptList.Add(events.Last().PointA);
-                        vecList.Add(crvs.TangentAt(events.Last().ParameterA));
+                        vecList.Add(crv.TangentAt(events.Last().ParameterA));
                         paramList.Add(events.Last().ParameterA);
                     }
                     else { break; }
@@ -103,10 +110,10 @@ namespace Toolkit
             }
 
         Finish:
-            crvList.Add(crvs);
-            ptList.Add(crvs.PointAtEnd);
-            vecList.Add(crvs.TangentAtEnd);
-            paramList.Add(crvs.Domain.Max);
+            crvList.Add(crv);
+            ptList.Add(crv.PointAtEnd);
+            vecList.Add(crv.TangentAtEnd);
+            paramList.Add(crv.Domain.Max);
 
             vd.Curves = crvList;
             vd.Points = ptList;
