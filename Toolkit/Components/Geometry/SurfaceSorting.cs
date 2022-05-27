@@ -12,7 +12,7 @@ namespace Toolkit.Components
         /// Initializes a new instance of the MyComponent1 class.
         /// </summary>
         public SurfaceSorting()
-          : base("SrfIndexSort", "SS", "Sort Surfaces based on sides and split based on index", "Toolkit", "Surface")
+          : base("SrfIndexSort", "SS", "Sort Surfaces based on sides and split based on index", "Toolkit", "Geometry")
         {
         }
 
@@ -45,33 +45,32 @@ namespace Toolkit.Components
         protected override void SolveInstance(IGH_DataAccess DA)
         {
             List<Surface> srfs = new List<Surface>();
-
             if (!DA.GetDataList(0,  srfs)) return;
 
             List<int> topSrfIndex = new List<int>();
             List<int> sideSrfIndex = new List<int>();
             List<int> bottomSrfIndex = new List<int>();
-            
+
             List<Point3d> topSrfList = new List<Point3d>();
             List<Point3d> sideSrfList = new List<Point3d>();
             List<Point3d> bottomSrfList = new List<Point3d>();
             for (int i = 0; i < srfs.Count; i++)
             {
                 Surface srf = srfs[i];
-                int z = (int)srf.NormalAt(0.5, 0.5).Z + 1; //get normal of each surface as an int; -1 = bottom, 0 = side, 1 = top
+                int z = (int)srf.NormalAt(0.5, 0.5).Z + 1; //get normal of each surface as an int; 0 = bottom, 1 = side, 2 = top
                 switch (z)
                 {
                     case 0:
-                        topSrfList.Add(srf.PointAt(0.5, 0.5));
-                        topSrfIndex.Add(i);
+                        bottomSrfList.Add(srf.PointAt(0.5, 0.5));
+                        bottomSrfIndex.Add(i);
                         break;
                     case 1:
                         sideSrfList.Add(srf.PointAt(0.5, 0.5));
                         sideSrfIndex.Add(i);
                         break;
                     case 2:
-                        bottomSrfList.Add(srf.PointAt(0.5, 0.5));
-                        bottomSrfIndex.Add(i);
+                        topSrfList.Add(srf.PointAt(0.5, 0.5));
+                        topSrfIndex.Add(i);
                         break;
                     default:
                         sideSrfList.Add(srf.PointAt(0.5, 0.5));
@@ -87,18 +86,18 @@ namespace Toolkit.Components
             //        switch (z)
             //        {
             //            case 0:
-            //                topSrfList.Add(srf.PointAt(0.5,0.5));
+            //                bottomSrfList.Add(srf.PointAt(0.5,0.5));
             //                break;
             //            case 1:
             //                sideSrfList.Add(srf.PointAt(0.5, 0.5));
             //                break;
             //            case 2:
-            //                bottomSrfList.Add(srf.PointAt(0.5, 0.5));
+            //                topSrfList.Add(srf.PointAt(0.5, 0.5));
             //                break;
             //            default:
             //                sideSrfList.Add(srf.PointAt(0.5, 0.5));
             //                break;
-                            
+
 
             //        }                       // if normal is facing up place surface in topSrfList
             //    });

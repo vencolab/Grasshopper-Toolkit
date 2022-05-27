@@ -26,7 +26,7 @@ namespace Toolkit
 {
     public class Shadow : GH_Component
     {
-        public Shadow() : base("ShadowOutline", "SO", "Project mesh outlines on another mesh in a given direction", "Toolkit", "Mesh")
+        public Shadow() : base("ShadowOutline", "SO", "Project mesh outlines on another mesh in a given direction", "Toolkit", "Geometry")
         {
         }
 

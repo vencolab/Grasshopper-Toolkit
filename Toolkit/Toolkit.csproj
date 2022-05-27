@@ -94,16 +94,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\CreateTree.cs" />
-    <Compile Include="Components\ExtendDomainRange.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Components\SurfaceSorting.cs" />
-    <Compile Include="Components\PersistentData.cs" />
-    <Compile Include="Components\Shadow_TESTING.cs" />
-    <Compile Include="Components\Increment.cs" />
-    <Compile Include="Components\TaskCapableVariableDivide.cs" />
+    <Compile Include="Components\Data\CreateTree.cs" />
+    <Compile Include="Components\Data\PersistentData.cs" />
+    <Compile Include="Components\Geometry\Shadow_TESTING.cs" />
+    <Compile Include="Components\Geometry\SurfaceSorting.cs" />
+    <Compile Include="Components\Geometry\TaskCapableVariableDivide.cs" />
+    <Compile Include="Components\Math\ExtendDomainRange.cs" />
+    <Compile Include="Components\Math\Increment.cs" />
     <Compile Include="Libraries\VariableDivide.cs" />
+    <Compile Include="Libraries\ZOffsetAtIntersections.cs" />
     <Compile Include="Properties\ToolkitInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -144,6 +143,7 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>Copy "$(TargetPath)" "$(AppData)\Grasshopper\Libraries\Toolkit\$(ProjectName).gha"
+Copy "$(TargetPath)" "U:\Grasshopper\02_Components\Libaries\Toolkit\$(ProjectName).gha"
 Erase "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

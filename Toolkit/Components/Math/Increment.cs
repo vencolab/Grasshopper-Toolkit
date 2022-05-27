@@ -26,12 +26,12 @@ namespace Toolkit
 
         protected override void SolveInstance(IGH_DataAccess DA)
         {
-            double min = 0.0, max = 0.0, incr = 0.0;
+            double min = 0.0, max = 1.0, incr = 0.1;
 
             if (!DA.GetData(0, ref min)) { return; }
             if (!DA.GetData(1, ref max)) { return; }
             if (!DA.GetData(2, ref incr)) { return; }
-            if (max < min)
+            if (max <= min)
             {
                 AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Maximum Value should to be larger than Minium Value");
             }

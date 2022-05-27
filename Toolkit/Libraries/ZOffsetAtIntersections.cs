@@ -17,17 +17,17 @@ namespace Hayball.Libraries
             List<Curve> _crvs = new List<Curve>() { crvs[0]};
             for (int i = 1; i < crvs.Count; i++)
             {
-                CurveIntersections ci = Intersection.CurveCurve(crvs[i], crvs[j], 0.01, 0.01);
+                CurveIntersections ci = Intersection.CurveCurve(crvs[i], crvs[i-1], 0.01, 0.01);
 
                 crvs[i].DivideByLength(LayerWidth, true, out Point3d[] pts);
+                PointCloud pointClouds = new PointCloud(pts);
                 foreach (Curve c in _crvs)
-                { 
-                    c.ClosestPoint
-                   
+                {
+                    c.ClosestPoints((IEnumerable<GeometryBase>)pointClouds,out Point3d point3D, out _,out int whichGeo, LayerWidth + 1);
                 }
                 foreach (Point3d p in pts)
                 {
-                    p.dis
+
                 }
             }
             return null;

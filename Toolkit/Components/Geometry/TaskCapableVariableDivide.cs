@@ -10,7 +10,7 @@ namespace Toolkit
     public class TaskCapableVariableDivide : GH_TaskCapableComponent<VariableDivide>, IGH_VariableParameterComponent
     {
         // initialise new instance  of variableDivide Class
-        public TaskCapableVariableDivide() : base("Divide Variable Distance", "VarDist", "Divide curves using a list of distances between points", "Toolkit", "Curve")
+        public TaskCapableVariableDivide() : base("Divide Variable Distance", "VarDist", "Divide curves using a list of distances between points", "Toolkit", "Geometry")
         {
         }
 

@@ -57,7 +57,6 @@ namespace Toolkit
 
             while (true)
             {
-
                 //reset i if distance list end reached but curve is still long.
                 if (i >= distanceList.Count - 1)
                 {
